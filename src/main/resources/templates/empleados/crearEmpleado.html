@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav"></nav>
+
+    <div class="container-all main-content">
+        <img class="centrado img-responsive" src="../../img/banner4.png">
+        <section class="form-signin display-flex ALI ">
+            <div class="container col-4">
+                <div class="row align-items-center">
+                    <div class="p-5 text-center">
+                        <h1 class="h1 mb-1">Registro de nuevo vendedor</h1>
+                        <form th:action="@{/empleados/formulario}" method="POST" th:object="${empleado}"
+                            enctype="multipart/form-data">
+
+                            <div>
+                                <div th:if="${exito}!=null" class="alert alert-success fuente" role="alert">
+                                    <h3 th:text="${exito}"></h3>
+                                </div>
+                                <div th:if="${error}!=null" class="alert alert-danger fuente" role="alert">
+                                    <p th:text="${error}"></p>
+                                </div>
+                            </div>
+
+                            <input type="hidden" th:value="${empleado.id}" />
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Nombre</label>
+                                </div>
+                                <input type="text" class="form-control" name="nombre" th:value="${nombre}"
+                                    placeholder="Nombre" required autofocus />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Apellido</label>
+                                </div>
+                                <input type="text" class="form-control" name="apellido" th:value="${apellido}"
+                                    placeholder="Apellido" required autofocus />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Usuario</label>
+                                </div>
+                                <input type="text" class="form-control" name="usuario" th:value="${usuario}"
+                                    placeholder="Usuario" required autofocus />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">DNI</label>
+                                </div>
+                                <input type="text" class="form-control" name="dni" th:value="${dni}" placeholder="DNI"
+                                    required autofocus />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Clave</label>
+                                </div>
+                                <label class="sr-only">Clave</label>
+                                <input type="password" class="form-control" name="clave" th:value="${clave}"
+                                    placeholder="Clave" required autofocus />
+                            </div>
+
+                            <br /><a th:href="@{/empleados/listar}" class="btn btn-secondary mx-3">Volver</a>
+
+                            <button type="submit" class="btn btn-dark mx-3" th:href="@{/empleados}">Registrar</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+
+</body>
+
+</html>

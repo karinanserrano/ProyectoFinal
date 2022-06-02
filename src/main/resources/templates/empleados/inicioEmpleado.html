@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav"></nav>
+
+    <div class="container-all main-content">
+        <img class="centrado img-responsive" src="../../img/banner4.png">
+
+        <section class="form-signin display-flex ALI">
+            <div class="container col-4">
+                <div class="row align-items-center">
+                    <div class="text-center">
+                       
+                        <br>
+                        <br>
+                        <h1 class="h1 mb-1 " th:text="${'¡Bienvenid@ ' + session.empleadosession.nombre + ' a una nueva experiencia de trabajo!'}"></h1>                       
+                        <br>
+                        <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/empleados/listar}" type="submit"
+                            style="margin:10px" class="btn btn-dark h-100 w-100 ">VENDEDORES</a>
+
+                        <a sec:authorize="isAuthenticated()" th:href="@{/clientes}" type="submit" style="margin:10px"
+                            class="btn btn-dark h-100 w-100">CLIENTES</a>
+
+                        <a sec:authorize="isAuthenticated()" th:href="@{/productos/listar}" type="submit"
+                            style="margin:10px" class="btn btn-dark h-100 w-100">VEHÍCULOS</a>
+
+
+                        <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/marcas/listar}" type="submit"
+                            style="margin:10px" class="btn btn-dark h-100 w-100">MARCAS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+</body>
+
+</html>

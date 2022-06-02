@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav"></nav>
+
+    <div class="container-all main-content">
+        <img class="centrado img-responsive" src="../../img/banner4.png">
+        <section class="form-signin display-flex ALI ">
+            <div class="container col-6">
+                <div class="row align-items-center">
+                    <div class="p-5 text-center">
+                        <h2 class="h1 mb-1 fuente"
+                            th:text="${'Gestionar consulta de ' + cliente.nombre + ' ' + cliente.apellido }"></h2>
+                        <br>
+                        <form th:action="@{/clientes/gestion/__${cliente.id}__}" method="POST" th:object="${cliente}"
+                            enctype="multipart/form-data">
+
+                            <div>
+                                <div th:if="${exito}!=null" class="alert alert-success fuente" role="alert">
+                                    <h3 th:text="${exito}"></h3>
+                                </div>
+                                <div th:if="${error}!=null" class="alert alert-danger fuente" role="alert">
+                                    <p th:text="${error}"></p>
+                                </div>
+                            </div>
+
+                            <input hidden th:value="${id}" name="id">
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Estado</label>
+                                </div>
+                                <select class="custom-select w-75" name="nuevoEstado" th:value="${cliente.estado}">
+                                    <option value="PENDIENTE">Pendiente</option>
+                                    <option value="GESTIONADO">Gestionado</option>
+                                    <option value="REALIZADO">Realizado</option>
+                                    <option value="RECHAZADO">Rechazado</option>
+                                </select>
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Horario</label>
+                                </div>
+                                <select class="custom-select w-75" name="nuevoHorarioContacto"
+                                    th:value="${cliente.horarioContacto}">
+                                    <option value="TURNO1">8:00 a 12:00 hs</option>
+                                    <option value="TURNO2">12:00 a 16:00 hs</option>
+                                    <option value="TURNO3">16:00 a 20:00 hs</option>
+                                </select>
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-100 ">
+                                    <label class="input-group-text">Comentario</label>
+                                </div>
+                                <br />
+                                <br />
+                                <p th:text="${cliente.comentario}" class="row justify-content-center" align="justify"></p>
+                                <br />
+                                <br />
+                            </div>
+                            <textarea rows="20" cols="50" type="text" class="form-control" name="nuevoComentario"
+                                placeholder="Introduzca comentario aqui..."></textarea>
+
+                            <br /> <a th:href="@{/clientes}" class="btn btn-secondary mx-3">Volver</a>
+
+                            <button type="submit" class="btn btn-dark mx-3">Enviar</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+
+</body>
+
+</html>

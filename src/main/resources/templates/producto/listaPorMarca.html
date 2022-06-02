@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav(mostrarBuscador = true , mostrarBuscadorModelo = true)"></nav>
+
+    <div class="container-all main-content justify-content-center">
+        <img class="centrado img-responsive" src="../../img/banner5.png">
+
+        <br>
+
+        <div class="logos align-items-center">
+
+            <div th:each="producto :${productos}">
+                <div class="row featurette">
+                    <div>
+                        <h1 class="featurette-heading my-3 fuente" th:text="${producto.modelo}"></h1>
+                    </div>
+                </div>
+
+                <div>
+                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="800"
+                        th:src="${'/fotos/fotoproducto/' + producto.id}" role="img"
+                        preserveAspectRatio="xMidYMid slice">
+                    </img>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <p class="lead" th:text="${producto.descripcion}"></p>
+                    </div>
+                </div>
+                <br> <a th:href="@{/clientes/formulario/__${producto.id}__}" class="btn btn-lg btn-warning mx-3 my-3"
+                    th:if="${session.empleadosession == null}">¡Contactanos!</a>
+                <br>
+                <hr class="featurette-divider">
+            </div>
+            <br>
+        </div>
+
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+
+</body>
+
+</html>

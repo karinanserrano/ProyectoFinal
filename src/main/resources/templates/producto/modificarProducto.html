@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav"></nav>
+
+    <div class="container-all main-content">
+        <img class="centrado img-responsive" src="../../img/banner4.png">
+        <section class="form-signin display-flex ALI ">
+            <div class="container col-4">
+                <div class="row align-items-center">
+                    <div class="p-5 text-center">
+                        <h1 class="h1 mb-1 " th:text="${'Modificar: ' + producto.modelo}"></h1>
+
+                        <div th:if="${exito}!=null" class="alert alert-success fuente" role="alert">
+                            <h3 th:text="${exito}"></h3>
+                        </div>
+                        <div th:if="${error}!=null" class="alert alert-danger fuente" role="alert">
+                            <p th:text="${error}"></p>
+                        </div>
+
+                        <form th:action="@{/productos/modificar}" method="POST" enctype="multipart/form-data">
+
+                            <input hidden th:value="${producto.id}" name="id">
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Modelo</label>
+                                </div>
+                                <input type="text" class="form-control" name="nuevoModelo" placeholder="Modelo" />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Marca</label>
+                                </div>
+                                <select class="custom-select w-75" id="marca" name="nuevaMarca">
+                                    <option th:each="marca : ${marcas}" th:text="${marca.nombre}" th:value="${marca.id}"
+                                        th:selected="${producto.marca != null ? marca.id == producto.marca.id:false}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Precio</label>
+                                </div>
+                                <input type="number" class="form-control" name="nuevoPrecio"
+                                    th:value="${producto.precio}" placeholder="Precio" required autofocus />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Descripcion</label>
+                                </div>
+                                <input type="text" class="form-control" name="nuevaDescripcion"
+                                    th:value="${producto.descripcion}" placeholder="Descripcion" required autofocus />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Foto</label>
+                                </div>
+                                <input type="file" class="form-control custom-file-input" name="nuevaFoto"
+                                    accept='image/png, image/jpg' placeholder="Imagen" />
+                            </div>
+
+                            <br />
+
+                            <div class="input-group">
+                                <div class="input-group-prepend w-25">
+                                    <label class="input-group-text">Ficha Tecnica</label>
+                                </div>
+                                <input type="file" class="form-control" name="nuevaFichaTecnica"
+                                    accept='image/png, image/JPG, image/jpg' placeholder="Ficha tecnica" />
+
+                            </div>
+
+                            <br /> <a th:href="@{/productos/listar}" class="btn btn-secondary mx-3">Volver</a>
+
+                            <button type="submit" class="btn btn-dark mx-3">Modificar</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+
+</body>
+
+</html>

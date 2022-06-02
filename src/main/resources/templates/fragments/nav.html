@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light "
+  th:with="mostrarBuscador=${mostrarBuscador} ?: false, mostrarBuscadorEmpleado=${mostrarBuscadorEmpleado} ?: false, mostrarBuscadorCliente=${mostrarBuscadorCliente} ?: false, mostrarBuscadorProducto=${mostrarBuscadorProducto} ?: false , mostrarBuscadorMarca=${mostrarBuscadorMarca} ?: false" >
+
+  <!-- Nombre va al index -->
+  <a class="navbar-brand mx-3 my-1" href="http://localhost:8080/ ">
+    <img src="../../img/logoEmpresa.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    SalEGG Force
+  </a>
+
+  <!-- Iconos y opciones -->
+  <div class="collapse navbar-collapse " id="navbarText">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8080/login" th:if="${session.empleadosession == null}">Login <span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:if="${session.empleadosession != null}"
+          th:text="${'Hola ' + session.empleadosession.nombre + '!'}"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/empleados" th:if="${session.empleadosession != null}">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/logout" th:if="${session.empleadosession != null}">Logout</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+    </span>
+  </div>
+
+  <!-- Buscar producto -->
+  <div th:if="${session.empleadosession != null && mostrarBuscadorProducto}">
+    <form class="form-inline d-flex align-items-center mx-3 my-1" th:action="@{/productos/search}">
+    <input class="form-control mr-sm-2" type="search" placeholder="BUSCAR" aria-label="Search" name="keyword">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+      viewBox="0 0 16 16">
+      <path
+        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+    </svg>
+    </form>
+  </div>
+
+  <!-- Buscar empleado -->
+  <div th:if="${session.empleadosession != null && mostrarBuscadorEmpleado}">
+    <form class="form-inline d-flex align-items-center mx-3 my-1" th:action="@{/empleados/search}">
+      <input class="form-control mr-sm-2" type="search" placeholder="BUSCAR" aria-label="Search" name="keyword">
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+        viewBox="0 0 16 16">
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+      </svg>
+    </form>
+  </div>
+
+  <!-- Buscar cliente -->
+  <div th:if="${session.empleadosession != null && mostrarBuscadorCliente}">
+    <form class="form-inline d-flex align-items-center mx-3 my-1" th:action="@{/clientes/search}">
+      <input class="form-control mr-sm-2" type="search" placeholder="BUSCAR" aria-label="Search" name="keyword">
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+        viewBox="0 0 16 16">
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+      </svg>
+    </form>
+  </div>
+
+    <!-- Buscar marca -->
+    <div th:if="${session.empleadosession != null && mostrarBuscadorMarca}">
+      <form class="form-inline d-flex align-items-center mx-3 my-1" th:action="@{/marcas/search}">
+        <input class="form-control mr-sm-2" type="search" placeholder="BUSCAR" aria-label="Search" name="keyword">
+  
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+      </form>
+    </div>
+
+  <!-- Buscador publico -->
+  <div class="dropdown  mx-3 my-1" th:if="${session.empleadosession == null && mostrarBuscador} ">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-expanded="false">
+      ¿Qué buscas?
+    </button>
+    <div class="dropdown-menu">
+      <div th:each="marca : ${marcas}" th:with="mostrarBuscadorMarca=${mostrarBuscadorMarca} ?: false">
+        <a class="dropdown-item fuente" th:href="@{/productos/__${marca.id}__}" th:text="${marca.nombre}">
+        </a>
+      </div>
+      <div th:each="producto :${productos}" th:with="mostrarBuscadorModelo=${mostrarBuscadorModelo} ?: false">
+        <a class="dropdown-item fuente" th:href="@{/clientes/formulario/__${producto.id}__}"
+          th:text="${producto.modelo}"></a>
+      </div>
+    </div>
+  </div>
+</nav>

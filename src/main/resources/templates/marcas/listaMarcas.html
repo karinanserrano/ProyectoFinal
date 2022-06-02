@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav(mostrarBuscadorMarca = true)"></nav>
+
+    <div class="container-all main-content">
+        <img class="centrado img-responsive" src="../../img/banner4.png">
+        <section class="form-signin display-flex ALI ">
+            <div class="container col-10">
+                <div class="row align-items-center">
+                    <div class="p-5 text-center">
+                        <h1 class="h1 mb-1 fuente">Listado de marcas</h1>
+
+                        <br>
+
+                        <div class="container-all">
+
+                            <a th:href="@{/empleados}" class="btn btn-secondary mx-3">Volver</a>
+
+                            <a th:href="@{/marcas/formulario}" class="btn btn-dark mx-3">Nueva marca</a>
+
+                            <br>
+                            <br>
+                            
+                            <table class="table table-light table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">MARCA</th>
+                                        <th scope="col ">MODIFICAR</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody th:each="marca : ${marcas}">
+                                    <tr>
+                                        <td th:text="${marca.nombre}"></td>
+                                        <td> <a th:href="@{/marcas/modificar/__${marca.id}__}"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="btn-dark" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <br>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+
+</body>
+
+</html>

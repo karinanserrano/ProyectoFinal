@@ -1,0 +1,191 @@
+.Color {
+    color: #870521;
+}
+
+.EscalaGris {
+    color: #272727;
+    color: #404040;
+    color: #5a5a5a;
+    color: #7f7f7f;
+}
+
+.listaProductos {
+    float: left;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.centrado {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+h1 {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.fuente {
+    font-family: 'Bebas Neue', cursive;
+}
+
+
+/* CSS DEL FOOTER */
+.main-content {
+    /* 100% de la altura de la vista menos altura del nav menos altura del footer */
+    min-height: calc(100vh - 64px - 56px);
+}
+
+footer {
+    margin: 0 auto;
+    background-color: #222;
+}
+
+footer footer {
+    width: 100%;
+    padding: 1rem;
+}
+
+footer p {
+    text-align: center;
+    color: #ccc;
+    margin: 0;
+}
+
+footer a {
+    color: #ccc;
+}
+
+/* INDEX */
+.logos {
+    padding: 80px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.left {
+    float: left;
+    background: red;
+}
+
+/* CARRUSEL */
+
+.slide {
+    display: flex;
+    transform: translate3d(0, 0, 0);
+    transition: all 1200ms;
+    animation-name: autoplay;
+    animation-duration: 15s;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.item-slide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-grow: 0;
+    max-width: 100%;
+}
+
+.pagination {
+    position: relative;
+    bottom: 20px;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.pagination-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 10px;
+    text-align: center;
+    transition: all 1200ms;
+}
+
+.pagination-item:hover {
+    transform: scale(2);
+}
+
+.pagination-item img {
+    display: inline-block;
+    max-width: none;
+    height: 100%;
+    transform: scale(1);
+    opacity: 0;
+    transition: all 1200ms;
+}
+
+.pagination-item:hover img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+input[id="1"]:checked~.slide {
+    animation: none;
+    transform: translate3d(0, 0, 0);
+}
+
+input[id="1"]:checked~.pagination .pagination-item[for="1"] {
+    background: #fff;
+}
+
+input[id="2"]:checked~.slide {
+    animation: none;
+    transform: translate3d(calc(-100% * 1), 0, 0);
+}
+
+input[id="2"]:checked~.pagination .pagination-item[for="2"] {
+    background: #fff;
+}
+
+input[id="3"]:checked~.slide {
+    animation: none;
+    transform: translate3d(calc(-100% * 2), 0, 0);
+}
+
+input[id="3"]:checked~.pagination .pagination-item[for="3"] {
+    background: #fff;
+}
+
+@keyframes autoplay {
+    33% {
+        transform: translate3d(calc(-100% * 0), 0, 0);
+    }
+
+    66% {
+        transform: translate3d(calc(-100% * 1), 0, 0);
+    }
+
+    100% {
+        transform: translate3d(calc(-100% * 2), 0, 0);
+    }
+
+    item {
+        width: 50%;
+    }
+
+}

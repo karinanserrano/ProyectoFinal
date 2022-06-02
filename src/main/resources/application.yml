@@ -1,0 +1,23 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/proyecto-final?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver 
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect      
+    thymeleaf:
+        cache: false 
+    security:
+        user:
+            name: "admin@mail.com"
+            password: "1234"
+    servlet:
+        multipart:
+            max-file-size: 25MB
+            max-request-size: 25MB
